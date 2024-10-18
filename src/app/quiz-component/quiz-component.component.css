@@ -3,8 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px; /* Adjusted width */
-  height: 700px; /* Adjusted height */
+  width: auto; /* Adjusted width */
+  height: auto; /* Adjusted height */
   margin: auto; /* Centers it horizontally */
   margin-top: 250px; /* Adds space from the top of the page */
   padding: 20px;
@@ -48,9 +48,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 900px;
+  width: auto;
   position: relative;
-  height: 700px;
+  height: auto;
   margin: auto;
   margin-top: 250px;
   padding: 20px;
@@ -107,8 +107,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 500px; /* Adjusted width */
-    height: 700px; /* Adjusted height */
+    width: auto; /* Adjusted width */
+    height: auto; /* Adjusted height */
     margin: auto; /* Centers it horizontally */
     margin-top: 250px; /* Adds space from the top of the page */
     padding: 20px;
@@ -127,7 +127,7 @@
     border: 1px solid #ed3144; /* Slightly darker red for the border */
   }
 
-  .quiz-result-buttons{
+  .quiz-result-button{
     display: flex;
     flex-direction: column;
     margin-top: 10px;
@@ -142,7 +142,7 @@
     margin: 10px; /* Adds space between buttons */
   }
 
-  .quiz-result-buttons button:hover {
+  .quiz-result-button button:hover {
     background-color: #0056b3;
   }
 

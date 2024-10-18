@@ -77,13 +77,13 @@ export class QuizDataService {
         category: "speedcubing"
       },
       {
-        question: "Who are the two main detectives in *Flikken Maastricht*?",
+        question: "Who are the two main detectives in Flikken Maastricht?",
         choices: ["Eva van Dongen and Floris Wolfs", "Marion Dreesen and Romeo Sanders", "Fiona de Jong and Peter Moens"],
         answer: "Eva van Dongen and Floris Wolfs",
         category: "Flikken Maastricht"
       },
       {
-        question: "In which city is *Flikken Maastricht* set?",
+        question: "In which city is Flikken Maastricht set?",
         choices: ["Amsterdam", "Maastricht", "Rotterdam"],
         answer: "Maastricht",
         category: "Flikken Maastricht"
@@ -101,8 +101,8 @@ export class QuizDataService {
         category: "Flikken Maastricht"
       },
       {
-        question: "Who plays the role of Floris Wolfs in *Flikken Maastricht*?",
-        choices: ["Victor Reinier", "Angela Schijf", "Oda Spelbos"],
+        question: "Who plays the role of Floris Wolfs in Flikken Maastricht?",
+        choices: ["Oda Spelbos", "Angela Schijf", "Victor Reinier"],
         answer: "Victor Reinier",
         category: "Flikken Maastricht"
       },
@@ -114,20 +114,20 @@ export class QuizDataService {
       },
       {
         question: "In which season did Floris Wolfs and Eva van Dongen first become partners?",
-        choices: ["Season 1", "Season 3", "Season 5"],
+        choices: ["Season 3", "Season 1", "Season 5"],
         answer: "Season 1",
         category: "Flikken Maastricht"
       },
       {
-        question: "What type of crimes are most commonly investigated in *Flikken Maastricht*?",
+        question: "What type of crimes are most commonly investigated in Flikken Maastricht?",
         choices: ["Murder and organized crime", "Financial fraud", "Traffic violations"],
         answer: "Murder and organized crime",
         category: "Flikken Maastricht"
       },
       {
         question: "Which character is a forensic expert in the series?",
-        choices: ["Marion Dreesen", "Romeo Sanders", "Fiona de Jong"],
-        answer: "Fiona de Jong",
+        choices: ["Marion Dreesen", "Romeo Sanders", "Timo"],
+        answer: "Timo",
         category: "Flikken Maastricht"
       }
     ];
