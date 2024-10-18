@@ -1,10 +1,11 @@
 .category-selection {
+  position: relative; /* Important for positioning child elements absolutely within this container */
     display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px; /* Adjusted width */
-  height: 700px; /* Adjusted height */
+  width: auto; /* Adjusted width */
+  height: auto; /* Adjusted height */
   margin: auto; /* Centers it horizontally */
   margin-top: 250px; /* Adds space from the top of the page */
   padding: 20px;
@@ -48,9 +49,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 900px;
+  width: auto;
   position: relative;
-  height: 700px;
+  height: auto;
   margin: auto;
   margin-top: 250px;
   padding: 20px;
@@ -73,6 +74,23 @@
   }
 
   .back-to-menu:hover{
+    background-color: #0056b3;
+  }
+
+  .start-menu-button{
+    position: absolute; /* Absolute positioning */
+    top: 10px; /* Distance from the top */
+    left: 10px; /* Distance from the left */
+    padding: 10px 15px;
+    background-color: #007bff; /* Tomato color */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .start-menu-button:hover{
     background-color: #0056b3;
   }
 
@@ -107,8 +125,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 500px; /* Adjusted width */
-    height: 700px; /* Adjusted height */
+    width: auto; /* Adjusted width */
+    height: auto; /* Adjusted height */
     margin: auto; /* Centers it horizontally */
     margin-top: 250px; /* Adds space from the top of the page */
     padding: 20px;
@@ -127,7 +145,7 @@
     border: 1px solid #ed3144; /* Slightly darker red for the border */
   }
 
-  .quiz-result-buttons{
+  .quiz-result-button{
     display: flex;
     flex-direction: column;
     margin-top: 10px;
@@ -142,7 +160,38 @@
     margin: 10px; /* Adds space between buttons */
   }
 
-  .quiz-result-buttons button:hover {
+  .quiz-result-button button:hover {
     background-color: #0056b3;
+  }
+
+  .startscreen-display{
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: auto; /* Adjusted width */
+  height: auto; /* Adjusted height */
+  margin: auto; /* Centers it horizontally */
+  margin-top: 250px; /* Adds space from the top of the page */
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .start-button{
+    display: flex;
+    flex-direction: column;
+    top: 10px; /* Distance from the top */
+    left: 10px; /* Distance from the left */
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
 
