@@ -1,7 +1,16 @@
+<div class="startscreen-display" *ngIf="showStartScreen">
+  <h1>Welcome to BrainSphere!</h1>
+  <h2>Are you ready to test your knowledge of different subjects?</h2>
+  <h2>Go on and click the button below to start!</h2>
+  <br>
+  <button class="start-button" (click)="startQuiz()">Start</button>
+</div>
+
 <!-- Category selection block -->
-<div *ngIf="!selectedCategory">
+<div *ngIf="!selectedCategory && !showStartScreen">
     <div class="category-selection">
-      <h2>Select a Category</h2>
+        <button class="start-menu-button" (click)="startMenu()">back</button>
+      <h1>Select a Category</h1>
       <div class="category-buttons">
         <button *ngFor="let category of categories" (click)="onSelectCategory(category)">
           {{ category }}

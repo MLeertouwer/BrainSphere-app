@@ -19,6 +19,7 @@ export class QuizComponent implements OnInit {
   quizResult: boolean = false;
   correct: boolean = false;
   incorrect: boolean = false;
+  showStartScreen: boolean = true;
 
   constructor(private quizDataService: QuizDataService) {}
 
@@ -38,11 +39,20 @@ export class QuizComponent implements OnInit {
     this.selectedCategory = null;
   }
 
+  startQuiz(): void {
+    this.showStartScreen = false;
+  }
+
+  startMenu(): void{
+    this.showStartScreen = true;
+  }
+
   // Select a category and load its questions
   onSelectCategory(category: string): void {
     this.selectedCategory = category;
     this.questions = this.quizDataService.getQuestionsByCategory(category);
     console.log("Questions for selected category:", this.questions);
+    this.showStartScreen = false;
     this.currentQuestionIndex = 0;
     this.score = 0; // Reset score
     this.quizResult = false; // Reset quiz result
