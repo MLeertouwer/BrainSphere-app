@@ -1,0 +1,36 @@
+<!-- Category selection block -->
+<div *ngIf="!selectedCategory">
+    <div class="category-selection">
+      <h2>Select a Category</h2>
+      <div class="category-buttons">
+        <button *ngFor="let category of categories" (click)="onSelectCategory(category)">
+          {{ category }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz section: Displayed only when a category is selected -->
+  <div *ngIf="selectedCategory">
+
+    <!-- Display the current question -->
+    <div class="question-display" *ngIf="currentQuestion"
+        [ngClass]="{'correct-answer': correct, 'incorrect-answer': incorrect}">
+        <div class="menu-button">
+            <button class="back-to-menu" (click)="onSelectBackToMenu()">Back</button>
+        </div>
+      <h2>{{ currentQuestion.question }}</h2>
+      <ul class="answer-container">
+        <button *ngFor="let choice of currentQuestion.choices" class="answer-buttons" (click)="onAnswer(choice)">
+          {{ choice }}
+        </button>
+      </ul>
+    </div>
+
+    <!-- Display quiz results -->
+    <div class="quiz-result" *ngIf="quizResult">
+      <h2>Your Score: {{ score }} out of {{ questions.length }}</h2>
+      <button class="quiz-result-button" (click)="onSelectCategory(selectedCategory)">Try Again</button>
+      <button class="quiz-result-button" (click)="onSelectBackToMenu()">Back to Menu</button>
+    </div>
+  </div>
