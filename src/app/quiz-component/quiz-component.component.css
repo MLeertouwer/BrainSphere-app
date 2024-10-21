@@ -141,8 +141,8 @@
   }
   
   .incorrect-answer {
-    background-color: #eb717b; /* Light red */
-    border: 1px solid #ed3144; /* Slightly darker red for the border */
+    background-color: #e08e95; /* Light red */
+    border: 1px solid #e85665; /* Slightly darker red for the border */
   }
 
   .quiz-result-button{
