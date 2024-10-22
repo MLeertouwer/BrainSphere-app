@@ -11,6 +11,18 @@ import { CommonModule } from '@angular/common';
   styleUrl: './quiz-component.component.css'
 })
 export class QuizComponent implements OnInit {
+  userAnswers: {
+    question: string,
+    selectedAnswer: string,
+    correctAnswer: string,
+    isCorrect: boolean
+  }[] = [];
+
+  wrongAnswers:
+  { question: string,
+    selectedAnswer: string,
+    correctAnswer: string }[] = [];
+
   categories: string[] = [];
   selectedCategory: string | null = null;
   questions: Question[] = [];
@@ -73,8 +85,19 @@ export class QuizComponent implements OnInit {
     // Make sure there is a valid current question
     if (!currentQuestion) return;
 
+    //Determine if answer given is correct
+    const isCorrect = selectedAnswer === currentQuestion.answer;
+
+     // Store the user's answer, the correct answer, and whether it was correct
+     this.userAnswers.push({
+      question: currentQuestion.question,
+      selectedAnswer: selectedAnswer,
+      correctAnswer: currentQuestion.answer,
+      isCorrect: isCorrect
+    });
+
     // Check if the answer is correct
-    if (selectedAnswer === currentQuestion.answer) {
+    if (isCorrect) {
       this.score++;
       this.correct = true;
       this.incorrect = false;
@@ -87,8 +110,10 @@ export class QuizComponent implements OnInit {
       this.correct = false;
       this.incorrect = false;
       this.currentQuestionIndex++;
+
       if (this.currentQuestionIndex >= this.questions.length) {
         this.quizResult = true;
+        this.wrongAnswers = this.userAnswers.filter(answer => !answer.isCorrect);
       }
     }, 1000);  // 1 second delay to let the user see the color change
   }
