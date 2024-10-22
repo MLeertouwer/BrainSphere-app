@@ -195,3 +195,29 @@
     transition: background-color 0.3s ease;
   }
 
+  .review-answers{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    position: relative;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #e7e4e4;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    gap: 10px; /* Adjusts space between items inside the flex container */
+  }
+
+  .review-answers ul{
+  padding: 0; /* Remove default ul padding */
+  list-style: none; /* Remove bullet points */
+  width: 100%; /* Full width */
+  }
+
+  .review-answers li {
+    margin-bottom: 10px; /* Control space between answer items */
+    padding: 10px;
+  }

@@ -38,8 +38,19 @@
 
     <!-- Display quiz results -->
     <div class="quiz-result" *ngIf="quizResult">
-      <h2>Your Score: {{ score }} out of {{ questions.length }}</h2>
+      <h2>Your Score:</h2>
+        <h2> {{ score }} out of {{ questions.length }} </h2>
       <button class="quiz-result-button" (click)="onSelectCategory(selectedCategory)">Try Again</button>
       <button class="quiz-result-button" (click)="onSelectBackToMenu()">Back to Menu</button>
+      <div *ngIf="userAnswers.length > 0">
+        <h2>Review Your Answers</h2>
+    <ul>
+      <li *ngFor="let answer of wrongAnswers" class="review-answers">
+        <strong>Question:</strong> {{ answer.question }} <br>
+        <strong>Your Answer:</strong> {{ answer.selectedAnswer }} <br>
+        <strong>Correct Answer:</strong> {{ answer.correctAnswer }}
+      </li>
+    </ul>
+      </div>
     </div>
   </div>
