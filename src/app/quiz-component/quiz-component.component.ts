@@ -70,6 +70,7 @@ export class QuizComponent implements OnInit {
     this.quizResult = false; // Reset quiz result
     this.correct = false; // Reset feedback flags
     this.incorrect = false;
+    this.userAnswers = [];
 
     if (this.questions.length === 0) {
       // No questions available for this category
