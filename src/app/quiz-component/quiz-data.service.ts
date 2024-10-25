@@ -129,6 +129,246 @@ export class QuizDataService {
         choices: ["Marion Dreesen", "Romeo Sanders", "Timo"],
         answer: "Timo",
         category: "Flikken Maastricht"
+      },
+      {
+        question: "What is the symbol for Hydrogen?",
+        choices: ["H", "He", "Hy"],
+        answer: "H",
+        category: "Science"
+      },
+      {
+        question: "Which element has the symbol 'He'?",
+        choices: ["Helium", "Hydrogen", "Hassium"],
+        answer: "Helium",
+        category: "Science"
+      },
+      {
+        question: "What is the symbol for Lithium?",
+        choices: ["L", "Li", "Lt"],
+        answer: "Li",
+        category: "Science"
+      },
+      {
+        question: "Which element has the symbol 'Be'?",
+        choices: ["Boron", "Beryllium", "Bismuth"],
+        answer: "Beryllium",
+        category: "Science"
+      },
+      {
+        question: "What is the element for the symbol 'C'?",
+        choices: ["Calcium", "Carbon", "Copper"],
+        answer: "Carbon",
+        category: "Science"
+      },
+      {
+        question: "What is the symbol for Nitrogen?",
+        choices: ["Ni", "Na", "N"],
+        answer: "N",
+        category: "Science"
+      },
+      {
+        question: "Which element has the symbol 'O'?",
+        choices: ["Osmium", "Oganesson", "Oxygen"],
+        answer: "Oxygen",
+        category: "Science"
+      },
+      {
+        question: "What is the element for the symbol 'F'?",
+        choices: ["Iron", "Francium", "Fluorine"],
+        answer: "Fluorine",
+        category: "Science"
+      },
+      {
+        question: "What is the symbol for Neon?",
+        choices: ["N", "Ne", "No"],
+        answer: "Ne",
+        category: "Science"
+      },
+      {
+        question: "Which element has the symbol 'Na'?",
+        choices: ["Nitrogen", "Sodium", "Neptunium"],
+        answer: "Sodium",
+        category: "Science"
+      },
+      {
+        question: "What is the symbol for Magnesium?",
+        choices: ["Mg", "Mn", "Ma"],
+        answer: "Mg",
+        category: "Science"
+      },
+      {
+        question: "Which element has the symbol 'Al'?",
+        choices: ["Aluminum", "Argon", "Antimony"],
+        answer: "Aluminum",
+        category: "Science"
+      },
+      {
+        question: "What is the element for the symbol 'Si'?",
+        choices: ["Sulfur", "Silicon", "Selenium"],
+        answer: "Silicon",
+        category: "Science"
+      },
+      {
+        question: "What is the symbol for Phosphorus?",
+        choices: ["P", "Ph", "Po"],
+        answer: "P",
+        category: "Science"
+      },
+      {
+        question: "Which element has the symbol 'S'?",
+        choices: ["Scandium", "Sulfur", "Strontium"],
+        answer: "Sulfur",
+        category: "Science"
+      },
+      {
+        question: "What is the element for the symbol 'Cl'?",
+        choices: ["Carbon", "Calcium", "Chlorine"],
+        answer: "Chlorine",
+        category: "Science"
+      },
+      {
+        question: "What is the symbol for Argon?",
+        choices: ["Ag", "Ar", "At"],
+        answer: "Ar",
+        category: "Science"
+      },
+      {
+        question: "Which element has the symbol 'K'?",
+        choices: ["Krypton", "Potassium", "Krypton"],
+        answer: "Potassium",
+        category: "Science"
+      },
+      {
+        question: "What is the element for the symbol 'Ca'?",
+        choices: ["Calcium", "Cadmium", "Carbon"],
+        answer: "Calcium",
+        category: "Science"
+      },
+      {
+        question: "What is the symbol for Iron?",
+        choices: ["Ir", "In", "Fe"],
+        answer: "Fe",
+        category: "Science"
+      },
+      {
+        question: "What is 25 + 37?",
+        choices: ["52", "62", "64"],
+        answer: "62",
+        category: "Math"
+      },
+      {
+        question: "What is 56 - 19?",
+        choices: ["37", "39", "41"],
+        answer: "37",
+        category: "Math"
+      },
+      {
+        question: "What is 9 x 7?",
+        choices: ["63", "56", "72"],
+        answer: "63",
+        category: "Math"
+      },
+      {
+        question: "What is 48 ÷ 6?",
+        choices: ["6", "7", "8"],
+        answer: "8",
+        category: "Math"
+      },
+      {
+        question: "What is the square of 5?",
+        choices: ["10", "20", "25"],
+        answer: "25",
+        category: "Math"
+      },
+      {
+        question: "Which is the greatest: 3.5, 3.75, or 3.25?",
+        choices: ["3.5", "3.75", "3.25"],
+        answer: "3.75",
+        category: "Math"
+      },
+      {
+        question: "What is 6 squared (6^2)?",
+        choices: ["26", "36", "46"],
+        answer: "36",
+        category: "Math"
+      },
+      {
+        question: "Solve for x: 3x = 27",
+        choices: ["7", "8", "9"],
+        answer: "9",
+        category: "Math"
+      },
+      {
+        question: "What is the perimeter of a rectangle with length 5 and width 8?",
+        choices: ["26", "28", "30"],
+        answer: "26",
+        category: "Math"
+      },
+      {
+        question: "What is 15% of 80?",
+        choices: ["10", "12", "15"],
+        answer: "12",
+        category: "Math"
+      },
+      {
+        question: "If you roll a fair six-sided die, what is the probability of rolling a 4?",
+        choices: ["1/4", "1/5", "1/6"],
+        answer: "1/6",
+        category: "Math"
+      },
+      {
+        question: "What is 0.75 as a fraction?",
+        choices: ["3/4", "1/2", "1/4"],
+        answer: "3/4",
+        category: "Math"
+      },
+      {
+        question: "What is the area of a square with side length 9?",
+        choices: ["36", "72", "81"],
+        answer: "81",
+        category: "Math"
+      },
+      {
+        question: "What is the result of 3³?",
+        choices: ["6", "9", "27"],
+        answer: "27",
+        category: "Math"
+      },
+      {
+        question: "Which of the following is a prime number: 9, 12, or 11?",
+        choices: ["9", "12", "11"],
+        answer: "11",
+        category: "Math"
+      },
+      {
+        question: "What is the least common multiple of 4 and 5?",
+        choices: ["10", "15", "20"],
+        answer: "20",
+        category: "Math"
+      },
+      {
+        question: "What is 1.5 x 4?",
+        choices: ["5", "6", "7"],
+        answer: "6",
+        category: "Math"
+      },
+      {
+        question: "What is 3/4 of 16?",
+        choices: ["10", "12", "14"],
+        answer: "12",
+        category: "Math"
+      },
+      {
+        question: "What is the volume of a cube with side length 3?",
+        choices: ["9", "18", "27"],
+        answer: "27",
+        category: "Math"
+      },
+      {
+        question: "If a rectangle has an area of 24 and a width of 4, what is the length?",
+        choices: ["6", "8", "10"],
+        answer: "6",
+        category: "Math"
       }
     ];
 
