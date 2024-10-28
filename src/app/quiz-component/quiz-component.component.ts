@@ -122,20 +122,24 @@ export class QuizComponent implements OnInit {
   getScorePercentage(){
     const scorePercentage = (this.score / this.questions.length) * 100;
 
-    if(scorePercentage >= 60){
+    if(scorePercentage === 100){
       return 'score-ring-green';
-    } else if( scorePercentage >= 40){
+    } else if( scorePercentage >= 60){
+      return 'score-ring-green';
+    } else if(scorePercentage >= 40){
       return 'score-ring-orange';
-    } else{
-      return 'score-ring-red';
+    } else {
+      return 'score-ring-red'
     }
   }
 
   getScoreMessage(){
     const scorePercentage = (this.score / this.questions.length) * 100;
 
-    if(scorePercentage >= 60){
-      return "Good job! You really know a lot!";
+    if(scorePercentage === 100){
+      return "Wow! You really are a pro on this subject!";
+    } else if( scorePercentage >= 60){
+      return "Good Job! Keep up the good work!"
     } else if( scorePercentage >= 40){
       return "Keep up the motivation! you're almost there!"
     } else{

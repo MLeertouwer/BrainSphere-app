@@ -28,6 +28,7 @@
         <div class="menu-button">
             <button class="back-to-menu" (click)="onSelectBackToMenu()">Back</button>
         </div>
+        <p> Question {{currentQuestionIndex + 1 }} of {{questions.length}}</p>
       <h2>{{ currentQuestion.question }}</h2>
       <ul class="answer-container">
         <button *ngFor="let choice of currentQuestion.choices" class="answer-buttons" (click)="onAnswer(choice)">
