@@ -221,3 +221,34 @@
     margin-bottom: 10px; /* Control space between answer items */
     padding: 10px;
   }
+
+  .score-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    text-align: center;
+  }
+
+  .score-ring-green {
+    border: 5px solid #28a745;
+    background-color: #28a74648;
+  }
+
+  .score-ring-orange {
+    border: 5px solid #ff9307;
+    background-color: #ff930752;
+  }
+
+  .score-ring-red {
+    border: 5px solid #dc3545;
+    background-color: #dc35464b;
+  }
+
+  .get-motivational-message{
+    font-weight: bolder;
+    font-style: italic;
+    font-size: 20px;
+  }

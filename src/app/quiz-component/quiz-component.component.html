@@ -39,7 +39,8 @@
     <!-- Display quiz results -->
     <div class="quiz-result" *ngIf="quizResult">
       <h2>Your Score:</h2>
-        <h2> {{ score }} out of {{ questions.length }} </h2>
+        <h2 [ngClass]="getScorePercentage()" class="score-container"> {{ score }} out of {{ questions.length }} </h2>
+        <p class="get-motivational-message"> {{ getScoreMessage() }}</p>
       <button class="quiz-result-button" (click)="onSelectCategory(selectedCategory)">Try Again</button>
       <button class="quiz-result-button" (click)="onSelectBackToMenu()">Back to Menu</button>
       <div *ngIf="userAnswers.length > 0">
