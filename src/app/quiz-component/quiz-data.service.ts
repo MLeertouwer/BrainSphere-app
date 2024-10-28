@@ -234,7 +234,7 @@ export class QuizDataService {
       },
       {
         question: "Which element has the symbol 'K'?",
-        choices: ["Krypton", "Potassium", "Krypton"],
+        choices: ["Krypton", "Potassium", "Argon"],
         answer: "Potassium",
         category: "Science"
       },

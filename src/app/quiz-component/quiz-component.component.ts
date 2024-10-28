@@ -118,4 +118,28 @@ export class QuizComponent implements OnInit {
       }
     }, 1000);  // 1 second delay to let the user see the color change
   }
+
+  getScorePercentage(){
+    const scorePercentage = (this.score / this.questions.length) * 100;
+
+    if(scorePercentage >= 60){
+      return 'score-ring-green';
+    } else if( scorePercentage >= 40){
+      return 'score-ring-orange';
+    } else{
+      return 'score-ring-red';
+    }
+  }
+
+  getScoreMessage(){
+    const scorePercentage = (this.score / this.questions.length) * 100;
+
+    if(scorePercentage >= 60){
+      return "Good job! You really know a lot!";
+    } else if( scorePercentage >= 40){
+      return "Keep up the motivation! you're almost there!"
+    } else{
+      return "Don't worry, just practice some more!"
+    }
+  }
 }
