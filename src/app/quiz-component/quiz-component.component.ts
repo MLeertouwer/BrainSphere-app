@@ -129,7 +129,7 @@ export class QuizComponent implements OnInit {
     } else if(scorePercentage >= 40){
       return 'score-ring-orange';
     } else {
-      return 'score-ring-red'
+      return 'score-ring-red';
     }
   }
 
