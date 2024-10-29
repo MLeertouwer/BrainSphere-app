@@ -32,6 +32,8 @@ export class QuizComponent implements OnInit {
   correct: boolean = false;
   incorrect: boolean = false;
   showStartScreen: boolean = true;
+  timeLeft = 15;
+  intervalId: any;
 
   constructor(private quizDataService: QuizDataService) {}
 
@@ -77,11 +79,31 @@ export class QuizComponent implements OnInit {
       this.quizResult = true;
       return;
     }
+    this.startTimer();
+  }
+
+  startTimer() {
+    clearInterval(this.intervalId); // Clear any existing interval
+    this.timeLeft = 15; // Reset timer for the new question
+    this.intervalId = setInterval(() => {
+      this.timeLeft--;
+      if (this.timeLeft <= 0) {
+        clearInterval(this.intervalId); // Stop the timer at zero
+        this.currentQuestionIndex++; // Move to the next question
+        if (this.currentQuestionIndex >= this.questions.length) {
+          this.quizResult = true;
+        } else {
+          this.startTimer(); // Restart timer for the new question
+        }
+      }
+    }, 1000);
   }
 
   // Handle user answering a question
   onAnswer(selectedAnswer: string): void {
     const currentQuestion = this.currentQuestion;
+
+    clearInterval(this.intervalId); // Stop the timer as soon as the user answers
 
     // Make sure there is a valid current question
     if (!currentQuestion) return;
@@ -105,11 +127,12 @@ export class QuizComponent implements OnInit {
     } else {
       this.incorrect = true;
       this.correct = false;
-    }
+  }
 
     setTimeout(() => {
       this.correct = false;
       this.incorrect = false;
+      this.startTimer();
       this.currentQuestionIndex++;
 
       if (this.currentQuestionIndex >= this.questions.length) {
