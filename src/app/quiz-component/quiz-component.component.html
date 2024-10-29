@@ -28,6 +28,9 @@
         <div class="menu-button">
             <button class="back-to-menu" (click)="onSelectBackToMenu()">Back</button>
         </div>
+        <div class="timer" *ngIf="timeLeft > 0">
+          <p> {{ timeLeft }} </p>
+        </div>
         <p> Question {{currentQuestionIndex + 1 }} of {{questions.length}}</p>
       <h2>{{ currentQuestion.question }}</h2>
       <ul class="answer-container">
