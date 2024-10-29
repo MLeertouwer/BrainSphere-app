@@ -37,6 +37,7 @@ export class QuizComponent implements OnInit {
 
   constructor(private quizDataService: QuizDataService) {}
 
+
   ngOnInit(): void {
     this.categories = this.quizDataService.getCategories();
   }
@@ -85,16 +86,24 @@ export class QuizComponent implements OnInit {
   startTimer() {
     clearInterval(this.intervalId); // Clear any existing interval
     this.timeLeft = 15; // Reset timer for the new question
+    this.incorrect = false;
+
     this.intervalId = setInterval(() => {
       this.timeLeft--;
       if (this.timeLeft <= 0) {
         clearInterval(this.intervalId); // Stop the timer at zero
-        this.currentQuestionIndex++; // Move to the next question
-        if (this.currentQuestionIndex >= this.questions.length) {
-          this.quizResult = true;
-        } else {
-          this.startTimer(); // Restart timer for the new question
-        }
+        this.incorrect = true; // Mark question as incorrect due to timeout
+
+        // Delay before moving to the next question
+        setTimeout(() => {
+          this.incorrect = false; // Reset incorrect state for the new question
+          this.currentQuestionIndex++; // Move to the next question
+          if (this.currentQuestionIndex >= this.questions.length) {
+            this.quizResult = true;
+          } else {
+            this.startTimer(); // Restart timer for the next question
+          }
+        }, 900);
       }
     }, 1000);
   }
