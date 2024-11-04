@@ -2,25 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { Question } from './questionmodel';
 import { QuizDataService } from './quiz-data.service';
 import { CommonModule } from '@angular/common';
+import { TopbtnComponent } from "../topbtn/topbtn.component";
 
 @Component({
   selector: 'app-quiz-component',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TopbtnComponent],
   templateUrl: './quiz-component.component.html',
   styleUrl: './quiz-component.component.css'
 })
 export class QuizComponent implements OnInit {
   userAnswers: {
     question: string,
-    selectedAnswer: string,
+    selectedAnswer: string | null,
     correctAnswer: string,
     isCorrect: boolean
   }[] = [];
 
   wrongAnswers:
   { question: string,
-    selectedAnswer: string,
+    selectedAnswer: string | null,
     correctAnswer: string }[] = [];
 
   categories: string[] = [];
@@ -43,10 +44,14 @@ export class QuizComponent implements OnInit {
   }
 
   // Safe getter for the current question
-  get currentQuestion(): Question | null {
-    return this.questions.length > 0 && this.currentQuestionIndex < this.questions.length
-      ? this.questions[this.currentQuestionIndex]
-      : null;
+  // get currentQuestion2(): Question {
+  //   return this.questions.length > 0 && this.currentQuestionIndex < this.questions.length
+  //     ? this.questions[this.currentQuestionIndex]
+  //     : null;
+  // }
+
+  get currentQuestion(): Question {
+    return this.questions[this.currentQuestionIndex];
   }
 
   // Navigate back to the category menu
@@ -85,7 +90,7 @@ export class QuizComponent implements OnInit {
 
   startTimer() {
     clearInterval(this.intervalId); // Clear any existing interval
-    this.timeLeft = 15; // Reset timer for the new question
+    this.timeLeft = 3; // Reset timer for the new question
     this.incorrect = false;
 
     this.intervalId = setInterval(() => {
@@ -94,8 +99,14 @@ export class QuizComponent implements OnInit {
         clearInterval(this.intervalId); // Stop the timer at zero
         this.incorrect = true; // Mark question as incorrect due to timeout
 
-        // Delay before moving to the next question
-        setTimeout(() => {
+        this.userAnswers.push({
+          question: this.currentQuestion.question,
+          selectedAnswer: "No answer",
+          correctAnswer: this.currentQuestion.answer,
+          isCorrect: false
+        });
+
+         setTimeout(() => {
           this.incorrect = false; // Reset incorrect state for the new question
           this.currentQuestionIndex++; // Move to the next question
           if (this.currentQuestionIndex >= this.questions.length) {
@@ -122,7 +133,7 @@ export class QuizComponent implements OnInit {
 
      // Store the user's answer, the correct answer, and whether it was correct
      this.userAnswers.push({
-      question: currentQuestion.question,
+      question: this.currentQuestion.question,
       selectedAnswer: selectedAnswer,
       correctAnswer: currentQuestion.answer,
       isCorrect: isCorrect
@@ -146,7 +157,7 @@ export class QuizComponent implements OnInit {
 
       if (this.currentQuestionIndex >= this.questions.length) {
         this.quizResult = true;
-        this.wrongAnswers = this.userAnswers.filter(answer => !answer.isCorrect);
+        this.wrongAnswers = this.userAnswers.filter(answer => !answer.selectedAnswer || !answer.isCorrect);
       }
     }, 1000);  // 1 second delay to let the user see the color change
   }
