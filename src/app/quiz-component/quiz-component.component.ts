@@ -67,10 +67,19 @@ export class QuizComponent implements OnInit {
     this.showStartScreen = true;
   }
 
+  shuffleQuestions(questions: Question[]){
+    for (let i = questions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1)); // Get a random index
+      [questions[i], questions[j]] = [questions[j], questions[i]]; // Swap elements
+    }
+    return questions;
+  }
+
   // Select a category and load its questions
   onSelectCategory(category: string): void {
     this.selectedCategory = category;
     this.questions = this.quizDataService.getQuestionsByCategory(category);
+    this.shuffleQuestions(this.questions);
     console.log("Questions for selected category:", this.questions);
     this.showStartScreen = false;
     this.currentQuestionIndex = 0;
