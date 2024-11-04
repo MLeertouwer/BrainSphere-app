@@ -55,6 +55,7 @@
         <strong>Your Answer:</strong> {{ answer.selectedAnswer }} <br>
         <strong>Correct Answer:</strong> {{ answer.correctAnswer }}
       </li>
+      <p style="font-weight: bolder;" class="no-wrong-answers" *ngIf="noWrongAnswers"> There are no wrong answers to be reviewed! </p>
     </ul>
     <app-topbtn></app-topbtn>
       </div>

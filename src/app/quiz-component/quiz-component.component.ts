@@ -35,6 +35,7 @@ export class QuizComponent implements OnInit {
   showStartScreen: boolean = true;
   timeLeft = 15;
   intervalId: any;
+  noWrongAnswers: boolean = false;
 
   constructor(private quizDataService: QuizDataService) {}
 
@@ -43,12 +44,6 @@ export class QuizComponent implements OnInit {
     this.categories = this.quizDataService.getCategories();
   }
 
-  // Safe getter for the current question
-  // get currentQuestion2(): Question {
-  //   return this.questions.length > 0 && this.currentQuestionIndex < this.questions.length
-  //     ? this.questions[this.currentQuestionIndex]
-  //     : null;
-  // }
 
   get currentQuestion(): Question {
     return this.questions[this.currentQuestionIndex];
@@ -99,7 +94,7 @@ export class QuizComponent implements OnInit {
 
   startTimer() {
     clearInterval(this.intervalId); // Clear any existing interval
-    this.timeLeft = 3; // Reset timer for the new question
+    this.timeLeft = 10; // Reset timer for the new question
     this.incorrect = false;
 
     this.intervalId = setInterval(() => {
@@ -120,7 +115,7 @@ export class QuizComponent implements OnInit {
           this.currentQuestionIndex++; // Move to the next question
           if (this.currentQuestionIndex >= this.questions.length) {
             this.quizResult = true;
-          } else {
+          } else{
             this.startTimer(); // Restart timer for the next question
           }
         }, 900);
@@ -167,6 +162,8 @@ export class QuizComponent implements OnInit {
       if (this.currentQuestionIndex >= this.questions.length) {
         this.quizResult = true;
         this.wrongAnswers = this.userAnswers.filter(answer => !answer.selectedAnswer || !answer.isCorrect);
+      } else if(this.wrongAnswers.length === 0){
+          this.noWrongAnswers = true;
       }
     }, 1000);  // 1 second delay to let the user see the color change
   }
