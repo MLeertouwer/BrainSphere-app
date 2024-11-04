@@ -13,14 +13,14 @@
   border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   }
-  
+
   .category-buttons {
     display: flex;
     flex-wrap: wrap; /* Allows items to wrap to the next line */
     gap: 10px; /* Space between buttons */
     justify-content: center; /* Optional: center the buttons within the container */
   }
-  
+
   .category-buttons button {
     padding: 16px 16px;
     background-color: #007bff;
@@ -31,12 +31,11 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+
   .category-buttons button:hover {
     background-color: #0056b3;
   }
-  
-  /* Optional: Title styling */
+
   .category-selection h2 {
     font-size: 1.5rem;
     color: #333;
@@ -139,7 +138,7 @@
     background-color: #d4edda; /* Light green */
     border: 1px solid #c3e6cb; /* Slightly darker green for the border */
   }
-  
+
   .incorrect-answer {
     background-color: #e08e95; /* Light red */
     border: 1px solid #e85665; /* Slightly darker red for the border */
@@ -265,3 +264,18 @@
     border: 5px solid #1307ffbc;
     background-color: #5c6ae652;
   }
+
+.no-wrong-answers{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  position: relative;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #e7e4e4;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
