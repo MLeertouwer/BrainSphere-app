@@ -35,7 +35,6 @@ export class QuizComponent implements OnInit {
   showStartScreen: boolean = true;
   timeLeft = 15;
   intervalId: any;
-  noWrongAnswers: boolean = false;
 
   constructor(private quizDataService: QuizDataService) {}
 
@@ -162,8 +161,6 @@ export class QuizComponent implements OnInit {
       if (this.currentQuestionIndex >= this.questions.length) {
         this.quizResult = true;
         this.wrongAnswers = this.userAnswers.filter(answer => !answer.selectedAnswer || !answer.isCorrect);
-      } else if(this.wrongAnswers.length === 0){
-          this.noWrongAnswers = true;
       }
     }, 1000);  // 1 second delay to let the user see the color change
   }
