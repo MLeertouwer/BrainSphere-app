@@ -20,7 +20,8 @@
   </div>
 
   <div *ngIf="showOptionMenu">
-    <div class="options-menu">
+    <div class="category-selection">
+      <button class="back-to-categories" (click)="onSelectBackToMenu()">back</button>
     <h2>Options</h2>
     <h3>Randomize questions</h3>
     <label class="switch">

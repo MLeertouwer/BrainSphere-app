@@ -93,6 +93,23 @@
     background-color: #0056b3;
   }
 
+  .back-to-categories{
+    position: absolute; /* Absolute positioning */
+    top: 10px; /* Distance from the top */
+    left: 10px; /* Distance from the left */
+    padding: 10px 15px;
+    background-color: #007bff; /* Tomato color */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .back-to-categories:hover{
+    background-color: #0056b3;
+  }
+
   .answer-container{
     display: flex;              /* Use Flexbox for layout */
     justify-content: center;     /* Center the buttons horizontally */

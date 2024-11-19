@@ -56,6 +56,11 @@ export class QuizComponent implements OnInit {
   // Navigate back to the category menu
   onSelectBackToMenu(): void {
     this.selectedCategory = null;
+    this.showOptionMenu = false;
+  }
+
+  startMenu(): void{
+    this.showStartScreen = true;
   }
 
   onGoToCategoryMenu(): void{
@@ -82,10 +87,6 @@ export class QuizComponent implements OnInit {
 
     console.log("Final Questions at Quiz Start:", this.questions); // Debug
     this.startTimer();
-  }
-
-  startMenu(): void{
-    this.showStartScreen = true;
   }
 
   shuffleQuestions(questions: Question[]): Question[] {
