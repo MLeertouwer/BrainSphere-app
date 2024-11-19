@@ -3,7 +3,7 @@
   <h2>Are you ready to test your knowledge of different subjects?</h2>
   <h2>Go on and click the button below to start!</h2>
   <br>
-  <button class="start-button" (click)="startQuiz()">Start</button>
+  <button class="start-button" (click)="onGoToCategoryMenu()">Start</button>
 </div>
 
 <!-- Category selection block -->
@@ -19,8 +19,21 @@
     </div>
   </div>
 
+  <div *ngIf="showOptionMenu">
+    <div class="options-menu">
+    <h2>Options</h2>
+    <h3>Randomize questions</h3>
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="randomOrder"  (change)="onRandomOrderChange()" />
+      <span class="slider round"></span>
+    </label>
+    <br>
+    <button (click)="startQuiz()" class="start-button">Start Quiz</button>
+    </div>
+  </div>
+
   <!-- Quiz section: Displayed only when a category is selected -->
-  <div *ngIf="selectedCategory">
+  <div *ngIf="selectedCategory && !showOptionMenu">
 
     <!-- Display the current question -->
     <div class="question-display" *ngIf="currentQuestion"

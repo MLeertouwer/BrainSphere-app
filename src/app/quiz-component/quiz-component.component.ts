@@ -3,14 +3,16 @@ import { Question } from './questionmodel';
 import { QuizDataService } from './quiz-data.service';
 import { CommonModule } from '@angular/common';
 import { TopbtnComponent } from "../topbtn/topbtn.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-quiz-component',
   standalone: true,
-  imports: [CommonModule, TopbtnComponent],
+  imports: [CommonModule, TopbtnComponent, FormsModule],
   templateUrl: './quiz-component.component.html',
   styleUrl: './quiz-component.component.css'
 })
+
 export class QuizComponent implements OnInit {
   userAnswers: {
     question: string,
@@ -36,6 +38,8 @@ export class QuizComponent implements OnInit {
   timeLeft = 15;
   intervalId: any;
   noWrongAnswers: boolean = false;
+  showOptionMenu: boolean = false;
+  randomOrder: boolean = false;
 
   constructor(private quizDataService: QuizDataService) {}
 
@@ -54,28 +58,56 @@ export class QuizComponent implements OnInit {
     this.selectedCategory = null;
   }
 
+  onGoToCategoryMenu(): void{
+    this.showStartScreen = false;
+    this.showOptionMenu = false;
+  }
+
+  prepareQuestions(): void {
+    console.log("Random Order Toggle:", this.randomOrder);
+
+    if (this.randomOrder) {
+      this.questions = this.shuffleQuestions(this.questions);
+      console.log("questions are randomized", this.questions)
+    } else {
+      console.log("Questions will remain in order", this.questions);
+    }
+  }
+
   startQuiz(): void {
     this.showStartScreen = false;
+    this.showOptionMenu = false;
+
+    this.prepareQuestions();
+
+    console.log("Final Questions at Quiz Start:", this.questions); // Debug
+    this.startTimer();
   }
 
   startMenu(): void{
     this.showStartScreen = true;
   }
 
-  shuffleQuestions(questions: Question[]){
-    for (let i = questions.length - 1; i > 0; i--) {
+  shuffleQuestions(questions: Question[]): Question[] {
+    const shuffled = [...questions]; // Create a copy of the array
+    for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1)); // Get a random index
-      [questions[i], questions[j]] = [questions[j], questions[i]]; // Swap elements
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap elements
     }
-    return questions;
+    return shuffled;
   }
 
   // Select a category and load its questions
   onSelectCategory(category: string): void {
     this.selectedCategory = category;
     this.questions = this.quizDataService.getQuestionsByCategory(category);
-    this.shuffleQuestions(this.questions);
+    console.log("Original questions from service:", this.questions);
+    this.randomOrder = false;
+    this.prepareQuestions();
+
+    console.log("Final Question List:", this.questions);
     console.log("Questions for selected category:", this.questions);
+
     this.showStartScreen = false;
     this.currentQuestionIndex = 0;
     this.score = 0; // Reset score
@@ -83,6 +115,7 @@ export class QuizComponent implements OnInit {
     this.correct = false; // Reset feedback flags
     this.incorrect = false;
     this.userAnswers = [];
+    this.showOptionMenu = true;
 
     if (this.questions.length === 0) {
       // No questions available for this category
@@ -122,6 +155,11 @@ export class QuizComponent implements OnInit {
       }
     }, 1000);
   }
+
+  onRandomOrderChange(): void {
+  console.log("Random order toggled. Current value:", this.randomOrder);
+  console.log(this.questions);
+ }
 
   // Handle user answering a question
   onAnswer(selectedAnswer: string): void {
