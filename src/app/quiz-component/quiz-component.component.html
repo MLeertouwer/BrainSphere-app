@@ -29,6 +29,12 @@
       <span class="slider round"></span>
     </label>
     <br>
+    <h3>Questions with time?</h3>
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="timeChoice" (change)="onTimedQuestionsChange()"/>
+      <span class="slider round"></span>
+    </label>
+    <br>
     <button (click)="startQuiz()" class="start-button">Start Quiz</button>
     </div>
   </div>
