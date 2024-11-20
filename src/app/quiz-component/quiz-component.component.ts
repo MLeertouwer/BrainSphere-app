@@ -35,11 +35,13 @@ export class QuizComponent implements OnInit {
   correct: boolean = false;
   incorrect: boolean = false;
   showStartScreen: boolean = true;
-  timeLeft = 15;
+  timeLeft = 0;
   intervalId: any;
   noWrongAnswers: boolean = false;
   showOptionMenu: boolean = false;
   randomOrder: boolean = false;
+  timeChoice: boolean = false;
+  timeOff: number = 0;
 
   constructor(private quizDataService: QuizDataService) {}
 
@@ -77,6 +79,13 @@ export class QuizComponent implements OnInit {
     } else {
       console.log("Questions will remain in order", this.questions);
     }
+
+    if(this.timeChoice){
+      this.timeLeft = 10;
+    } else{
+      this.timeOff = 0;
+    }
+
   }
 
   startQuiz(): void {
@@ -86,6 +95,7 @@ export class QuizComponent implements OnInit {
     this.prepareQuestions();
 
     console.log("Final Questions at Quiz Start:", this.questions); // Debug
+
     this.startTimer();
   }
 
@@ -100,11 +110,13 @@ export class QuizComponent implements OnInit {
 
   // Select a category and load its questions
   onSelectCategory(category: string): void {
+    this.prepareQuestions();
+
     this.selectedCategory = category;
     this.questions = this.quizDataService.getQuestionsByCategory(category);
     console.log("Original questions from service:", this.questions);
     this.randomOrder = false;
-    this.prepareQuestions();
+    this.timeChoice = false;
 
     console.log("Final Question List:", this.questions);
     console.log("Questions for selected category:", this.questions);
@@ -127,6 +139,11 @@ export class QuizComponent implements OnInit {
   }
 
   startTimer() {
+
+    if (!this.timeChoice) {
+      return;
+    }
+
     clearInterval(this.intervalId); // Clear any existing interval
     this.timeLeft = 10; // Reset timer for the new question
     this.incorrect = false;
@@ -160,6 +177,10 @@ export class QuizComponent implements OnInit {
   onRandomOrderChange(): void {
   console.log("Random order toggled. Current value:", this.randomOrder);
   console.log(this.questions);
+ }
+
+ onTimedQuestionsChange(): void {
+  console.log("Timed questions toggled. Current value:", this.timeChoice);
  }
 
   // Handle user answering a question
