@@ -13,12 +13,12 @@ export class TopbtnComponent implements OnInit{
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    // Detect if the user is near the bottom of the page
-    const scrollPosition = window.innerHeight + window.scrollY;
-    const pageHeight = document.documentElement.scrollHeight;
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  const windowHeight = window.innerHeight;
+  const documentHeight = document.documentElement.scrollHeight;
 
-    // Show button when user is within 100px of the bottom
-    this.showTopButton = scrollPosition >= pageHeight - 100;
+  // Show the button only if the scroll position exceeds a fraction of the page height
+  this.showTopButton = scrollPosition > (documentHeight - windowHeight) * 0.98;
   }
 
   scrollToTop() {
