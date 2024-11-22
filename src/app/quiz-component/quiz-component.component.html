@@ -1,13 +1,15 @@
-<div class="startscreen-display" *ngIf="showStartScreen">
-  <h1>Welcome to BrainSphere!</h1>
-  <h2>Are you ready to test your knowledge of different subjects?</h2>
-  <h2>Go on and click the button below to start!</h2>
-  <br>
-  <button class="start-button" (click)="onGoToCategoryMenu()">Start</button>
+<div class="center-container">
+  <div class="startscreen-display" *ngIf="showStartScreen">
+    <h1>Welcome to BrainSphere!</h1>
+    <h2>Are you ready to test your knowledge of different subjects?</h2>
+    <h2>Go on and click the button below to start!</h2>
+    <br>
+    <button class="start-button" (click)="onGoToCategoryMenu()">Start</button>
+  </div>
 </div>
 
 <!-- Category selection block -->
-<div *ngIf="!selectedCategory && !showStartScreen">
+<div *ngIf="!selectedCategory && !showStartScreen" class="center-container">
     <div class="category-selection">
         <button class="start-menu-button" (click)="startMenu()">back</button>
       <h1>Select a Category</h1>
@@ -19,7 +21,7 @@
     </div>
   </div>
 
-  <div *ngIf="showOptionMenu">
+  <div *ngIf="showOptionMenu" class="center-container">
     <div class="category-selection">
       <button class="back-to-categories" (click)="onSelectBackToMenu()">back</button>
     <h2>Options</h2>
@@ -40,9 +42,7 @@
   </div>
 
   <!-- Quiz section: Displayed only when a category is selected -->
-  <div *ngIf="selectedCategory && !showOptionMenu">
-
-    <!-- Display the current question -->
+  <div *ngIf="selectedCategory && !showOptionMenu" class="center-container">
     <div class="question-display" *ngIf="currentQuestion"
         [ngClass]="{'correct-answer': correct, 'incorrect-answer': incorrect}">
         <div class="menu-button">
