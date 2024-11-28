@@ -36,6 +36,19 @@
       <input type="checkbox" [(ngModel)]="timeChoice" (change)="onTimedQuestionsChange()"/>
       <span class="slider round"></span>
     </label>
+    <div *ngIf="timeChoice">
+      <h3>Set your time</h3>
+      <label for="timer-duration">Timer Duration (seconds): </label>
+      <input
+        id="timer-duration"
+        type="number"
+        [(ngModel)]="timerDuration"
+        min="5"
+        max="60"
+        step="1"
+      />
+      <p>Selected Duration: {{ timerDuration }} seconds</p>
+    </div>
     <br>
     <button (click)="startQuiz()" class="start-button">Start Quiz</button>
     </div>

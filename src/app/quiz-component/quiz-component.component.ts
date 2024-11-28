@@ -41,7 +41,7 @@ export class QuizComponent implements OnInit {
   showOptionMenu: boolean = false;
   randomOrder: boolean = false;
   timeChoice: boolean = false;
-  timeOff: number = 0;
+  timerDuration: number = 10;
 
   constructor(private quizDataService: QuizDataService) {}
 
@@ -70,22 +70,23 @@ export class QuizComponent implements OnInit {
     this.showOptionMenu = false;
   }
 
+  shuffleQuestions(questions: Question[]): Question[] {
+    const shuffled = [...questions]; // Create a copy of the array
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1)); // Get a random index
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap elements
+    }
+    return shuffled;
+  }
+
   prepareQuestions(): void {
     console.log("Random Order Toggle:", this.randomOrder);
 
     if (this.randomOrder) {
       this.questions = this.shuffleQuestions(this.questions);
-      console.log("questions are randomized", this.questions)
     } else {
       console.log("Questions will remain in order", this.questions);
     }
-
-    if(this.timeChoice){
-      this.timeLeft = 10;
-    } else{
-      this.timeOff = 0;
-    }
-
   }
 
   startQuiz(): void {
@@ -99,27 +100,14 @@ export class QuizComponent implements OnInit {
     this.startTimer();
   }
 
-  shuffleQuestions(questions: Question[]): Question[] {
-    const shuffled = [...questions]; // Create a copy of the array
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1)); // Get a random index
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap elements
-    }
-    return shuffled;
-  }
-
   // Select a category and load its questions
   onSelectCategory(category: string): void {
     this.prepareQuestions();
 
     this.selectedCategory = category;
     this.questions = this.quizDataService.getQuestionsByCategory(category);
-    console.log("Original questions from service:", this.questions);
     this.randomOrder = false;
     this.timeChoice = false;
-
-    console.log("Final Question List:", this.questions);
-    console.log("Questions for selected category:", this.questions);
 
     this.showStartScreen = false;
     this.currentQuestionIndex = 0;
@@ -145,7 +133,7 @@ export class QuizComponent implements OnInit {
     }
 
     clearInterval(this.intervalId); // Clear any existing interval
-    this.timeLeft = 10; // Reset timer for the new question
+    this.timeLeft = this.timerDuration;
     this.incorrect = false;
 
     this.intervalId = setInterval(() => {
