@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Question } from './questionmodel';
+import { IQuestion } from './iquestion.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizDataService {
-  private questions: Question[] = [
+  private questions: IQuestion[] = [
       {
         question: "What is the name of the most popular 3x3 cube solving method?",
         choices: ["CFOP", "Roux", "ZZ"],
@@ -372,12 +372,16 @@ export class QuizDataService {
       }
     ];
 
-    getQuestionsByCategory(category: string): Question[] {
+    getQuestionsByCategory(category: string): IQuestion[] {
       return this.questions.filter((q) => q.category === category);
     }
 
     getCategories(): string[] {
       return [...new Set(this.questions.map((q) => q.category))]; // Unique categories
+    }
+
+    getQuestionByText(questionText: string): IQuestion | undefined {
+      return this.questions.find(question => question.question === questionText);
     }
   }
 
