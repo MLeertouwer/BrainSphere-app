@@ -19,7 +19,7 @@ export class QuizComponent implements OnInit {
   wrongAnswers: answerResults[] = [];
 
   categories: string[] = [];
-  selectedCategory: string = null;
+  selectedCategory: string = '';
   questions: IQuestion[] = [];
   currentQuestionIndex: number = 0;
   score: number = 0;
@@ -49,7 +49,7 @@ export class QuizComponent implements OnInit {
 
   // Navigate back to the category menu
   onSelectBackToMenu(): void {
-    this.selectedCategory = null;
+    this.selectedCategory = '';
     this.showOptionMenu = false;
     this.quizResult = false;
   }
