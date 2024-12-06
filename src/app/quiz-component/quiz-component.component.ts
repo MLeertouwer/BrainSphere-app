@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Question } from './questionmodel';
+import { IQuestion } from './iquestion.model';
 import { QuizDataService } from './quiz-data.service';
 import { CommonModule } from '@angular/common';
 import { TopbtnComponent } from "../topbtn/topbtn.component";
 import { FormsModule } from '@angular/forms';
+import { answerResults } from './ianswer-results.model';
 
 @Component({
   selector: 'app-quiz-component',
@@ -14,21 +15,12 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class QuizComponent implements OnInit {
-  userAnswers: {
-    question: string,
-    selectedAnswer: string | null,
-    correctAnswer: string,
-    isCorrect: boolean
-  }[] = [];
-
-  wrongAnswers:
-  { question: string,
-    selectedAnswer: string | null,
-    correctAnswer: string }[] = [];
+  userAnswers: answerResults[] = [];
+  wrongAnswers: answerResults[] = [];
 
   categories: string[] = [];
-  selectedCategory: string | null = null;
-  questions: Question[] = [];
+  selectedCategory: string = null;
+  questions: IQuestion[] = [];
   currentQuestionIndex: number = 0;
   score: number = 0;
   quizResult: boolean = false;
@@ -51,7 +43,7 @@ export class QuizComponent implements OnInit {
   }
 
 
-  get currentQuestion(): Question {
+  get currentQuestion(): IQuestion {
     return this.questions[this.currentQuestionIndex];
   }
 
@@ -59,6 +51,7 @@ export class QuizComponent implements OnInit {
   onSelectBackToMenu(): void {
     this.selectedCategory = null;
     this.showOptionMenu = false;
+    this.quizResult = false;
   }
 
   startMenu(): void{
@@ -68,9 +61,9 @@ export class QuizComponent implements OnInit {
   onGoToCategoryMenu(): void{
     this.showStartScreen = false;
     this.showOptionMenu = false;
-  }
+   }
 
-  shuffleQuestions(questions: Question[]): Question[] {
+  shuffleQuestions(questions: IQuestion[]): IQuestion[] {
     const shuffled = [...questions]; // Create a copy of the array
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1)); // Get a random index
@@ -94,8 +87,6 @@ export class QuizComponent implements OnInit {
     this.showOptionMenu = false;
 
     this.prepareQuestions();
-
-    console.log("Final Questions at Quiz Start:", this.questions); // Debug
 
     this.startTimer();
   }
@@ -129,6 +120,9 @@ export class QuizComponent implements OnInit {
   startTimer() {
 
     if (!this.timeChoice) {
+      clearInterval(this.intervalId); // Clear any existing interval
+      this.timeLeft = 0;
+
       return;
     }
 
@@ -146,7 +140,8 @@ export class QuizComponent implements OnInit {
           question: this.currentQuestion.question,
           selectedAnswer: "No answer",
           correctAnswer: this.currentQuestion.answer,
-          isCorrect: false
+          isCorrect: false,
+          category: ''
         });
 
          setTimeout(() => {
@@ -161,6 +156,43 @@ export class QuizComponent implements OnInit {
       }
     }, 1000);
   }
+
+repeatWrongAnswers(): void{
+  if (this.wrongAnswers.length === 0) {
+    console.log("No wrong answers to retry.");
+    return;
+  }
+
+ // Map the wrong answers back to the original questions with all their choices
+ this.questions = this.wrongAnswers.map(wrongAnswer => {
+  const originalQuestion = this.quizDataService.getQuestionByText(wrongAnswer.question);
+  if (!originalQuestion) {
+    return null;
+  }
+  return originalQuestion; // Keep the original structure, including choices
+}).filter(question => question !== null) as IQuestion[];
+
+  this.resetQuizState();
+  this.showOptionMenu = true;
+
+  if (this.randomOrder) {
+    this.questions = this.shuffleQuestions(this.questions);
+  }
+
+  if (this.timeChoice) {
+    this.startTimer();
+  }
+}
+
+resetQuizState(): void {
+  this.currentQuestionIndex = 0;
+  this.score = 0;
+  this.quizResult = false;
+  this.correct = false;
+  this.incorrect = false;
+  this.userAnswers = [];
+  this.wrongAnswers = [];
+}
 
   onRandomOrderChange(): void {
   console.log("Random order toggled. Current value:", this.randomOrder);
@@ -188,8 +220,18 @@ export class QuizComponent implements OnInit {
       question: this.currentQuestion.question,
       selectedAnswer: selectedAnswer,
       correctAnswer: currentQuestion.answer,
-      isCorrect: isCorrect
+      isCorrect: isCorrect,
+      category: this.selectedCategory, // Include category here
     });
+
+    if (!isCorrect) {
+      this.wrongAnswers.push({
+        question: currentQuestion.question,
+        correctAnswer: currentQuestion.answer,
+        category: this.selectedCategory,
+        selectedAnswer: ''
+      });
+    }
 
     // Check if the answer is correct
     if (isCorrect) {

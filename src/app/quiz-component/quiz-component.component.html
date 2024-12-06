@@ -1,29 +1,25 @@
 <div class="center-container">
-  <div class="startscreen-display" *ngIf="showStartScreen">
+  <div class="category-selection" *ngIf="showStartScreen">
     <h1>Welcome to BrainSphere!</h1>
     <h2>Are you ready to test your knowledge of different subjects?</h2>
     <h2>Go on and click the button below to start!</h2>
     <br>
     <button class="start-button" (click)="onGoToCategoryMenu()">Start</button>
   </div>
-</div>
 
-<!-- Category selection block -->
-<div *ngIf="!selectedCategory && !showStartScreen" class="center-container">
-    <div class="category-selection">
-        <button class="start-menu-button" (click)="startMenu()">back</button>
-      <h1>Select a Category</h1>
-      <div class="category-buttons">
-        <button *ngFor="let category of categories" (click)="onSelectCategory(category)">
-          {{ category }}
-        </button>
-      </div>
+  <!-- Category selection block -->
+  <div class="category-selection" *ngIf="!selectedCategory && !showStartScreen">
+      <button class="start-menu-button" (click)="startMenu()">back</button>
+    <h1>Select a Category</h1>
+    <div class="category-buttons">
+      <button *ngFor="let category of categories" (click)="onSelectCategory(category)">
+        {{ category }}
+      </button>
     </div>
   </div>
 
-  <div *ngIf="showOptionMenu" class="center-container">
-    <div class="category-selection">
-      <button class="back-to-categories" (click)="onSelectBackToMenu()">back</button>
+  <div class="category-selection" *ngIf="showOptionMenu">
+    <button class="back-to-categories" (click)="onSelectBackToMenu()">back</button>
     <h2>Options</h2>
     <h3>Randomize questions</h3>
     <label class="switch">
@@ -51,48 +47,47 @@
     </div>
     <br>
     <button (click)="startQuiz()" class="start-button">Start Quiz</button>
-    </div>
   </div>
 
-  <!-- Quiz section: Displayed only when a category is selected -->
-  <div *ngIf="selectedCategory && !showOptionMenu" class="center-container">
-    <div class="question-display" *ngIf="currentQuestion"
-        [ngClass]="{'correct-answer': correct, 'incorrect-answer': incorrect}">
-        <div class="menu-button">
-            <button class="back-to-menu" (click)="onSelectBackToMenu()">Back</button>
-        </div>
-        <div class="timer" *ngIf="timeLeft > 0">
-          <p> {{ timeLeft }} </p>
-        </div>
-        <p> Question {{currentQuestionIndex + 1 }} of {{questions.length}}</p>
-      <h2>{{ currentQuestion.question }}</h2>
-      <ul class="answer-container">
-        <button *ngFor="let choice of currentQuestion.choices" class="answer-buttons" (click)="onAnswer(choice)">
-          {{ choice }}
-        </button>
-      </ul>
+<!-- Quiz section: Displayed only when a category is selected -->
+  <div class="question-display" *ngIf="currentQuestion && selectedCategory && !showOptionMenu"
+      [ngClass]="{'correct-answer': correct, 'incorrect-answer': incorrect}" >
+    <div class="menu-button">
+        <button class="back-to-menu" (click)="onSelectBackToMenu()">Back</button>
     </div>
-
-    <!-- Display quiz results -->
-    <div class="quiz-result" *ngIf="quizResult">
-      <h2>Your Score:</h2>
-        <h2 [ngClass]="getScorePercentage()" class="score-container"> {{ score }} out of {{ questions.length }} </h2>
-        <p class="get-motivational-message"> {{ getScoreMessage() }}</p>
-      <button class="quiz-result-button" (click)="onSelectCategory(selectedCategory)">Try Again</button>
-      <button class="quiz-result-button" (click)="onSelectBackToMenu()">Back to Menu</button>
-      <div *ngIf="userAnswers.length > 0">
-        <h2>Review Your Answers</h2>
-    <ul>
-      <li *ngFor="let answer of wrongAnswers" class="review-answers">
-        <strong>Question:</strong> {{ answer.question }} <br>
-        <strong>Your Answer:</strong> {{ answer.selectedAnswer }} <br>
-        <strong>Correct Answer:</strong> {{ answer.correctAnswer }}
-      </li>
-      @if (this.currentQuestionIndex >= this.questions.length && wrongAnswers.length === 0) {
-        <p style="font-weight: bolder;" class="no-wrong-answers"> There are no wrong answers to be reviewed! </p>
-      }
+    <div class="timer" *ngIf="timeLeft > 0">
+      <p> {{ timeLeft }} </p>
+    </div>
+    <p> Question {{currentQuestionIndex + 1 }} of {{questions.length}}</p>
+    <h2>{{ currentQuestion.question }}</h2>
+    <ul class="answer-container">
+      <button *ngFor="let choice of currentQuestion.choices" class="answer-buttons" (click)="onAnswer(choice)">
+        {{ choice }}
+      </button>
     </ul>
-    <app-topbtn></app-topbtn>
-      </div>
+  </div>
+
+  <!-- Display quiz results -->
+  <div class="quiz-result" *ngIf="quizResult">
+    <h2>Your Score:</h2>
+      <h2 [ngClass]="getScorePercentage()" class="score-container"> {{ score }} out of {{ questions.length }} </h2>
+      <p class="get-motivational-message"> {{ getScoreMessage() }}</p>
+    <button *ngIf="wrongAnswers.length > 0"  class="quiz-result-button" (click)="repeatWrongAnswers()">Repeat wrong answers</button>
+    <button class="quiz-result-button" (click)="onSelectCategory(selectedCategory)">Try Again</button>
+    <button class="quiz-result-button" (click)="onSelectBackToMenu()">Back to Menu</button>
+    <div *ngIf="userAnswers.length > 0">
+      <h2>Review Your Answers</h2>
+      <ul>
+        <li *ngFor="let answer of wrongAnswers" class="review-answers">
+          <strong>Question:</strong> {{ answer.question }} <br>
+          <strong>Your Answer:</strong> {{ answer.selectedAnswer }} <br>
+          <strong>Correct Answer:</strong> {{ answer.correctAnswer }}
+        </li>
+        @if (this.currentQuestionIndex >= this.questions.length && wrongAnswers.length === 0) {
+          <p style="font-weight: bolder;" class="no-wrong-answers"> There are no wrong answers to be reviewed! </p>
+        }
+      </ul>
+      <app-topbtn></app-topbtn>
     </div>
   </div>
+</div>
