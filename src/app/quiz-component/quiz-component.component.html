@@ -7,9 +7,8 @@
     <button class="start-button" (click)="onGoToCategoryMenu()">Start</button>
   </div>
 
-  <!-- Category selection block -->
   <div class="category-selection" *ngIf="!selectedCategory && !showStartScreen">
-      <button class="start-menu-button" (click)="startMenu()">back</button>
+    <button class="start-menu-button" (click)="startMenu()">back</button>
     <h1>Select a Category</h1>
     <div class="category-buttons">
       <button *ngFor="let category of categories" (click)="onSelectCategory(category)">
@@ -18,7 +17,18 @@
     </div>
   </div>
 
-  <div class="category-selection" *ngIf="showOptionMenu">
+  <!-- Level Selection -->
+  <div class="category-selection" *ngIf="selectedCategory && !selectedLevel && levels.length > 0">
+    <button class="start-menu-button" (click)="onSelectBackToMenu()">back</button>
+    <h1>Select Level for {{ selectedCategory }}</h1>
+    <div class="category-buttons">
+      <button *ngFor="let level of levels" (click)="onSelectLevel(level)">
+        {{ level }}
+      </button>
+    </div>
+  </div>
+
+  <div class="category-selection" *ngIf="showOptionMenu && selectedLevel">
     <button class="back-to-categories" (click)="onSelectBackToMenu()">back</button>
     <h2>Options</h2>
     <h3>Randomize questions</h3>
@@ -50,7 +60,7 @@
   </div>
 
 <!-- Quiz section: Displayed only when a category is selected -->
-  <div class="question-display" *ngIf="currentQuestion && selectedCategory && !showOptionMenu"
+  <div class="question-display" *ngIf="currentQuestion && selectedCategory && selectedLevel && !showOptionMenu"
       [ngClass]="{'correct-answer': correct, 'incorrect-answer': incorrect}" >
     <div class="menu-button">
         <button class="back-to-menu" (click)="onSelectBackToMenu()">Back</button>
@@ -90,4 +100,6 @@
       <app-topbtn></app-topbtn>
     </div>
   </div>
+<div>
 </div>
+

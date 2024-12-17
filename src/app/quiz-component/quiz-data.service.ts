@@ -130,245 +130,506 @@ export class QuizDataService {
         answer: "Timo",
         category: "Flikken Maastricht"
       },
+      //easy science
       {
         question: "What is the symbol for Hydrogen?",
         choices: ["H", "He", "Hy"],
         answer: "H",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "Which element has the symbol 'He'?",
         choices: ["Helium", "Hydrogen", "Hassium"],
         answer: "Helium",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "What is the symbol for Lithium?",
         choices: ["L", "Li", "Lt"],
         answer: "Li",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "Which element has the symbol 'Be'?",
         choices: ["Boron", "Beryllium", "Bismuth"],
         answer: "Beryllium",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "What is the element for the symbol 'C'?",
         choices: ["Calcium", "Carbon", "Copper"],
         answer: "Carbon",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "What is the symbol for Nitrogen?",
         choices: ["Ni", "Na", "N"],
         answer: "N",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "Which element has the symbol 'O'?",
         choices: ["Osmium", "Oganesson", "Oxygen"],
         answer: "Oxygen",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "What is the element for the symbol 'F'?",
         choices: ["Iron", "Francium", "Fluorine"],
         answer: "Fluorine",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "What is the symbol for Neon?",
         choices: ["N", "Ne", "No"],
         answer: "Ne",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "Which element has the symbol 'Na'?",
         choices: ["Nitrogen", "Sodium", "Neptunium"],
         answer: "Sodium",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "What is the symbol for Magnesium?",
         choices: ["Mg", "Mn", "Ma"],
         answer: "Mg",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "Which element has the symbol 'Al'?",
         choices: ["Aluminum", "Argon", "Antimony"],
         answer: "Aluminum",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "What is the element for the symbol 'Si'?",
         choices: ["Sulfur", "Silicon", "Selenium"],
         answer: "Silicon",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "What is the symbol for Phosphorus?",
         choices: ["P", "Ph", "Po"],
         answer: "P",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "Which element has the symbol 'S'?",
         choices: ["Scandium", "Sulfur", "Strontium"],
         answer: "Sulfur",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "What is the element for the symbol 'Cl'?",
         choices: ["Carbon", "Calcium", "Chlorine"],
         answer: "Chlorine",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "What is the symbol for Argon?",
         choices: ["Ag", "Ar", "At"],
         answer: "Ar",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "Which element has the symbol 'K'?",
         choices: ["Krypton", "Potassium", "Argon"],
         answer: "Potassium",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "What is the element for the symbol 'Ca'?",
         choices: ["Calcium", "Cadmium", "Carbon"],
         answer: "Calcium",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
       },
       {
         question: "What is the symbol for Iron?",
         choices: ["Ir", "In", "Fe"],
         answer: "Fe",
-        category: "Science"
+        category: "Science",
+        level: "Easy"
+      },
+
+      //medium science
+      {
+        question: "What is the atomic number of oxygen?",
+        choices: ["6", "8", "10"],
+        answer: "8",
+        category: "Science",
+        level: "Medium"
       },
       {
-        question: "What is 25 + 37?",
-        choices: ["52", "62", "64"],
-        answer: "62",
-        category: "Math"
+        question: "What is the chemical symbol for gold?",
+        choices: ["Ag", "Au", "Al"],
+        answer: "Au",
+        category: "Science",
+        level: "Medium"
       },
       {
-        question: "What is 56 - 19?",
-        choices: ["37", "39", "41"],
-        answer: "37",
-        category: "Math"
+        question: "What is the SI unit for energy?",
+        choices: ["Watt", "Joule", "Newton"],
+        answer: "Joule",
+        category: "Science",
+        level: "Medium"
+      },
+      {
+        question: "Which planet has the most moons?",
+        choices: ["Saturn", "Jupiter", "Mars"],
+        answer: "Saturn",
+        category: "Science",
+        level: "Medium"
+      },
+      {
+        question: "What part of the cell controls its activities?",
+        choices: ["Mitochondria", "Nucleus", "Ribosome"],
+        answer: "Nucleus",
+        category: "Science",
+        level: "Medium"
+      },
+      {
+        question: "What is the boiling point of water at sea level in Celsius?",
+        choices: ["100°C", "90°C", "110°C"],
+        answer: "100°C",
+        category: "Science",
+        level: "Medium"
+      },
+      {
+        question: "Which gas do plants absorb during photosynthesis?",
+        choices: ["Oxygen", "Carbon Dioxide", "Nitrogen"],
+        answer: "Carbon Dioxide",
+        category: "Science",
+        level: "Medium"
+      },
+      {
+        question: "What is the main gas found in the Sun?",
+        choices: ["Oxygen", "Hydrogen", "Helium"],
+        answer: "Hydrogen",
+        category: "Science",
+        level: "Medium"
+      },
+      {
+        question: "What is the most common element in the universe?",
+        choices: ["Oxygen", "Carbon", "Hydrogen"],
+        answer: "Hydrogen",
+        category: "Science",
+        level: "Medium"
+      },
+      {
+        question: "What is the chemical formula for water?",
+        choices: ["H2O", "O2", "CO2"],
+        answer: "H2O",
+        category: "Science",
+        level: "Medium"
+      },
+      //hard science
+      {
+      question: "What is the only element that lacks neutrons?",
+      choices: ["Helium", "Hydrogen", "Lithium"],
+      answer: "Hydrogen",
+      category: "Science",
+      level: "Hard"
+    },
+    {
+      question: "What is the second law of thermodynamics about?",
+      choices: [
+        "Energy conservation",
+        "Entropy always increasing in an isolated system",
+        "Force equals mass times acceleration"
+      ],
+      answer: "Entropy always increasing in an isolated system",
+      category: "Science",
+      level: "Hard"
+    },
+    {
+      question: "What is the chemical symbol for tungsten?",
+      choices: ["W", "Tg", "Tu"],
+      answer: "W",
+      category: "Science",
+      level: "Hard"
+    },
+    {
+      question: "Which scientist proposed the theory of general relativity?",
+      choices: ["Isaac Newton", "Albert Einstein", "Niels Bohr"],
+      answer: "Albert Einstein",
+      category: "Science",
+      level: "Hard"
+    },
+    {
+      question: "What is the term for the positively charged particle in an atom?",
+      choices: ["Proton", "Electron", "Neutron"],
+      answer: "Proton",
+      category: "Science",
+      level: "Hard"
+    },
+    {
+      question: "What is the primary component of natural gas?",
+      choices: ["Propane", "Methane", "Butane"],
+      answer: "Methane",
+      category: "Science",
+      level: "Hard"
+    },
+    {
+      question: "Which planet has the shortest day in the solar system?",
+      choices: ["Earth", "Jupiter", "Mars"],
+      answer: "Jupiter",
+      category: "Science",
+      level: "Hard"
+    },
+    {
+      question: "What is the speed of light in a vacuum, approximately?",
+      choices: ["300,000 km/s", "150,000 km/s", "500,000 km/s"],
+      answer: "300,000 km/s",
+      category: "Science",
+      level: "Hard"
+    },
+    {
+      question: "What is the strongest type of chemical bond?",
+      choices: ["Ionic bond", "Covalent bond", "Hydrogen bond"],
+      answer: "Covalent bond",
+      category: "Science",
+      level: "Hard"
+    },
+    {
+      question: "What is the pH value of a neutral solution?",
+      choices: ["0", "7", "14"],
+      answer: "7",
+      category: "Science",
+      level: "Hard"
+    },
+      //Easy Math
+      {
+        question: "What is 7 + 3?",
+        choices: ["9", "10", "11"],
+        answer: "10",
+        category: "Math",
+        level: "Easy"
+      },
+      {
+        question: "What is 15 - 5?",
+        choices: ["8", "9", "10"],
+        answer: "10",
+        category: "Math",
+        level: "Easy"
+      },
+      {
+        question: "What is 4 x 2?",
+        choices: ["6", "7", "8"],
+        answer: "8",
+        category: "Math",
+        level: "Easy"
+      },
+      {
+        question: "What is 20 ÷ 4?",
+        choices: ["4", "5", "6"],
+        answer: "5",
+        category: "Math",
+        level: "Easy"
+      },
+      {
+        question: "What is 9 + 5?",
+        choices: ["12", "13", "14"],
+        answer: "14",
+        category: "Math",
+        level: "Easy"
+      },
+      {
+        question: "What is 12 - 7?",
+        choices: ["5", "6", "7"],
+        answer: "5",
+        category: "Math",
+        level: "Easy"
+      },
+      {
+        question: "What is 3 x 3?",
+        choices: ["6", "7", "9"],
+        answer: "9",
+        category: "Math",
+        level: "Easy"
+      },
+      {
+        question: "What is 18 ÷ 2?",
+        choices: ["7", "8", "9"],
+        answer: "9",
+        category: "Math",
+        level: "Easy"
+      },
+      {
+        question: "What is 10 + 10?",
+        choices: ["15", "20", "25"],
+        answer: "20",
+        category: "Math",
+        level: "Easy"
+      },
+      {
+        question: "What is 6 x 4?",
+        choices: ["20", "22", "24"],
+        answer: "24",
+        category: "Math",
+        level: "Easy"
+      },
+      //Medium Math
+      {
+        question: "What is 15 + 28?",
+        choices: ["40", "42", "43"],
+        answer: "43",
+        category: "Math",
+        level: "Medium"
+      },
+      {
+        question: "What is 36 ÷ 4?",
+        choices: ["7", "8", "9"],
+        answer: "9",
+        category: "Math",
+        level: "Medium"
       },
       {
         question: "What is 9 x 7?",
-        choices: ["63", "56", "72"],
+        choices: ["56", "63", "72"],
         answer: "63",
-        category: "Math"
+        category: "Math",
+        level: "Medium"
       },
       {
-        question: "What is 48 ÷ 6?",
-        choices: ["6", "7", "8"],
-        answer: "8",
-        category: "Math"
+        question: "Solve for x: 3x - 7 = 8",
+        choices: ["3", "5", "7"],
+        answer: "5",
+        category: "Math",
+        level: "Medium"
       },
       {
-        question: "What is the square of 5?",
-        choices: ["10", "20", "25"],
-        answer: "25",
-        category: "Math"
-      },
-      {
-        question: "Which is the greatest: 3.5, 3.75, or 3.25?",
-        choices: ["3.5", "3.75", "3.25"],
-        answer: "3.75",
-        category: "Math"
-      },
-      {
-        question: "What is 6 squared (6^2)?",
-        choices: ["26", "36", "46"],
-        answer: "36",
-        category: "Math"
-      },
-      {
-        question: "Solve for x: 3x = 27",
+        question: "What is the square root of 81?",
         choices: ["7", "8", "9"],
         answer: "9",
-        category: "Math"
+        category: "Math",
+        level: "Medium"
       },
       {
-        question: "What is the perimeter of a rectangle with length 5 and width 8?",
-        choices: ["26", "28", "30"],
-        answer: "26",
-        category: "Math"
-      },
-      {
-        question: "What is 15% of 80?",
-        choices: ["10", "12", "15"],
-        answer: "12",
-        category: "Math"
-      },
-      {
-        question: "If you roll a fair six-sided die, what is the probability of rolling a 4?",
-        choices: ["1/4", "1/5", "1/6"],
-        answer: "1/6",
-        category: "Math"
-      },
-      {
-        question: "What is 0.75 as a fraction?",
-        choices: ["3/4", "1/2", "1/4"],
-        answer: "3/4",
-        category: "Math"
-      },
-      {
-        question: "What is the area of a square with side length 9?",
-        choices: ["36", "72", "81"],
-        answer: "81",
-        category: "Math"
-      },
-      {
-        question: "What is the result of 3³?",
-        choices: ["6", "9", "27"],
-        answer: "27",
-        category: "Math"
-      },
-      {
-        question: "Which of the following is a prime number: 9, 12, or 11?",
-        choices: ["9", "12", "11"],
-        answer: "11",
-        category: "Math"
-      },
-      {
-        question: "What is the least common multiple of 4 and 5?",
-        choices: ["10", "15", "20"],
-        answer: "20",
-        category: "Math"
-      },
-      {
-        question: "What is 1.5 x 4?",
-        choices: ["5", "6", "7"],
-        answer: "6",
-        category: "Math"
-      },
-      {
-        question: "What is 3/4 of 16?",
-        choices: ["10", "12", "14"],
-        answer: "12",
-        category: "Math"
-      },
-      {
-        question: "What is the volume of a cube with side length 3?",
-        choices: ["9", "18", "27"],
-        answer: "27",
-        category: "Math"
-      },
-      {
-        question: "If a rectangle has an area of 24 and a width of 4, what is the length?",
+        question: "What is 2³?",
         choices: ["6", "8", "10"],
-        answer: "6",
-        category: "Math"
+        answer: "8",
+        category: "Math",
+        level: "Medium"
+      },
+      {
+        question: "If a triangle has sides of 5, 12, and 13, is it a right triangle?",
+        choices: ["Yes", "No", "Not enough information"],
+        answer: "Yes",
+        category: "Math",
+        level: "Medium"
+      },
+      {
+        question: "What is 25% of 200?",
+        choices: ["40", "50", "60"],
+        answer: "50",
+        category: "Math",
+        level: "Medium"
+      },
+      {
+        question: "What is 45 + 33?",
+        choices: ["75", "77", "78"],
+        answer: "78",
+        category: "Math",
+        level: "Medium"
+      },
+      {
+        question: "Solve for x: 2x + 5 = 19",
+        choices: ["6", "7", "8"],
+        answer: "7",
+        category: "Math",
+        level: "Medium"
+      },
+      //Hard Math
+      {
+        question: "What is the derivative of f(x) = 3x² + 2x?",
+        choices: ["6x + 2", "6x + 4", "3x + 2"],
+        answer: "6x + 2",
+        category: "Math",
+        level: "Hard"
+      },
+      {
+        question: "Solve for x: 2x² - 3x - 5 = 0",
+        choices: ["-1, 5", "1, -5", "2, -3"],
+        answer: "1, -5",
+        category: "Math",
+        level: "Hard"
+      },
+      {
+        question: "What is the integral of 2x with respect to x?",
+        choices: ["x²", "2x²", "x³"],
+        answer: "x²",
+        category: "Math",
+        level: "Hard"
+      },
+      {
+        question: "What is the area of a circle with radius 7?",
+        choices: ["49π", "14π", "21π"],
+        answer: "49π",
+        category: "Math",
+        level: "Hard"
+      },
+      {
+        question: "What is the sum of the angles in a hexagon?",
+        choices: ["720°", "1080°", "1440°"],
+        answer: "720°",
+        category: "Math",
+        level: "Hard"
+      },
+      {
+        question: "What is the solution to the equation 3x + 4 = 10?",
+        choices: ["1", "2", "3"],
+        answer: "2",
+        category: "Math",
+        level: "Hard"
+      },
+      {
+        question: "What is the derivative of f(x) = sin(x)?",
+        choices: ["cos(x)", "-cos(x)", "sin(x)"],
+        answer: "cos(x)",
+        category: "Math",
+        level: "Hard"
+      },
+      {
+        question: "Solve for x: x² + 6x + 9 = 0",
+        choices: ["-3", "3", "0"],
+        answer: "-3",
+        category: "Math",
+        level: "Hard"
+      },
+      {
+        question: "What is the value of the limit: lim (x → 0) (sin(x) / x)?",
+        choices: ["0", "1", "∞"],
+        answer: "1",
+        category: "Math",
+        level: "Hard"
+      },
+      {
+        question: "What is the value of the integral from 0 to 1 of (x² + 1) dx?",
+        choices: ["2/3", "1", "4/3"],
+        answer: "4/3",
+        category: "Math",
+        level: "Hard"
       }
     ];
 
@@ -382,6 +643,17 @@ export class QuizDataService {
 
     getQuestionByText(questionText: string): IQuestion | undefined {
       return this.questions.find(question => question.question === questionText);
+    }
+
+    getQuestionsByCategoryAndLevel(category: string, level: string | null): IQuestion[] {
+      return this.questions.filter((q) => q.category === category && (!level || q.level === level));
+    }
+
+    getLevelsForCategory(category: string): string[] {
+      const categoryLevels = this.questions
+        .filter((q) => q.category === category && q.level)
+        .map((q) => q.level!);
+      return [...new Set(categoryLevels)];
     }
   }
 

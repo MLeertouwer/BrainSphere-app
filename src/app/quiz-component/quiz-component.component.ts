@@ -19,7 +19,9 @@ export class QuizComponent implements OnInit {
   wrongAnswers: answerResults[] = [];
 
   categories: string[] = [];
+  levels: string[] = [];
   selectedCategory: string = '';
+  selectedLevel: string | null = null;
   questions: IQuestion[] = [];
   currentQuestionIndex: number = 0;
   score: number = 0;
@@ -50,6 +52,7 @@ export class QuizComponent implements OnInit {
   // Navigate back to the category menu
   onSelectBackToMenu(): void {
     this.selectedCategory = '';
+    this.selectedLevel = '';
     this.showOptionMenu = false;
     this.quizResult = false;
   }
@@ -64,16 +67,22 @@ export class QuizComponent implements OnInit {
    }
 
   shuffleQuestions(questions: IQuestion[]): IQuestion[] {
-    const shuffled = [...questions]; // Create a copy of the array
+    const shuffled = [...questions];
     for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1)); // Get a random index
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap elements
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
   }
 
   prepareQuestions(): void {
-    console.log("Random Order Toggle:", this.randomOrder);
+
+    if (this.selectedCategory && this.selectedLevel) {
+      this.questions = this.quizDataService.getQuestionsByCategoryAndLevel(
+        this.selectedCategory,
+        this.selectedLevel
+      );
+    }
 
     if (this.randomOrder) {
       this.questions = this.shuffleQuestions(this.questions);
@@ -91,26 +100,28 @@ export class QuizComponent implements OnInit {
     this.startTimer();
   }
 
-  // Select a category and load its questions
   onSelectCategory(category: string): void {
-    this.prepareQuestions();
-
     this.selectedCategory = category;
-    this.questions = this.quizDataService.getQuestionsByCategory(category);
+    this.selectedCategory = category;
+    this.levels = this.quizDataService.getLevelsForCategory(category);
+    this.selectedLevel = null;
+    this.showOptionMenu = false;
+    this.selectedCategory = category;
+
+    this.questions = this.quizDataService.getQuestionsByCategoryAndLevel(category, this.selectedLevel);
     this.randomOrder = false;
     this.timeChoice = false;
 
     this.showStartScreen = false;
     this.currentQuestionIndex = 0;
-    this.score = 0; // Reset score
-    this.quizResult = false; // Reset quiz result
-    this.correct = false; // Reset feedback flags
+    this.score = 0;
+    this.quizResult = false;
+    this.correct = false;
     this.incorrect = false;
     this.userAnswers = [];
-    this.showOptionMenu = true;
+    this.showOptionMenu = false;
 
     if (this.questions.length === 0) {
-      // No questions available for this category
       this.quizResult = true;
       return;
     }
@@ -120,21 +131,21 @@ export class QuizComponent implements OnInit {
   startTimer() {
 
     if (!this.timeChoice) {
-      clearInterval(this.intervalId); // Clear any existing interval
+      clearInterval(this.intervalId);
       this.timeLeft = 0;
 
       return;
     }
 
-    clearInterval(this.intervalId); // Clear any existing interval
+    clearInterval(this.intervalId);
     this.timeLeft = this.timerDuration;
     this.incorrect = false;
 
     this.intervalId = setInterval(() => {
       this.timeLeft--;
       if (this.timeLeft <= 0) {
-        clearInterval(this.intervalId); // Stop the timer at zero
-        this.incorrect = true; // Mark question as incorrect due to timeout
+        clearInterval(this.intervalId);
+        this.incorrect = true;
 
         this.userAnswers.push({
           question: this.currentQuestion.question,
@@ -145,16 +156,22 @@ export class QuizComponent implements OnInit {
         });
 
          setTimeout(() => {
-          this.incorrect = false; // Reset incorrect state for the new question
-          this.currentQuestionIndex++; // Move to the next question
+          this.incorrect = false;
+          this.currentQuestionIndex++;
           if (this.currentQuestionIndex >= this.questions.length) {
             this.quizResult = true;
           } else{
-            this.startTimer(); // Restart timer for the next question
+            this.startTimer();
           }
         }, 900);
       }
     }, 1000);
+  }
+
+  onSelectLevel(level: string): void {
+    this.selectedLevel = level;
+    this.showOptionMenu = true;
+    this.prepareQuestions();
   }
 
 repeatWrongAnswers(): void{
@@ -163,13 +180,12 @@ repeatWrongAnswers(): void{
     return;
   }
 
- // Map the wrong answers back to the original questions with all their choices
  this.questions = this.wrongAnswers.map(wrongAnswer => {
   const originalQuestion = this.quizDataService.getQuestionByText(wrongAnswer.question);
   if (!originalQuestion) {
     return null;
   }
-  return originalQuestion; // Keep the original structure, including choices
+  return originalQuestion;
 }).filter(question => question !== null) as IQuestion[];
 
   this.resetQuizState();
@@ -203,25 +219,26 @@ resetQuizState(): void {
   console.log("Timed questions toggled. Current value:", this.timeChoice);
  }
 
-  // Handle user answering a question
+ onLevelChange(): void {
+  this.questions = this.quizDataService.getQuestionsByCategoryAndLevel(this.selectedCategory, this.selectedLevel);
+  console.log("Questions after level change:", this.questions);
+}
+
   onAnswer(selectedAnswer: string): void {
     const currentQuestion = this.currentQuestion;
 
-    clearInterval(this.intervalId); // Stop the timer as soon as the user answers
+    clearInterval(this.intervalId);
 
-    // Make sure there is a valid current question
     if (!currentQuestion) return;
 
-    //Determine if answer given is correct
     const isCorrect = selectedAnswer === currentQuestion.answer;
 
-     // Store the user's answer, the correct answer, and whether it was correct
      this.userAnswers.push({
       question: this.currentQuestion.question,
       selectedAnswer: selectedAnswer,
       correctAnswer: currentQuestion.answer,
       isCorrect: isCorrect,
-      category: this.selectedCategory, // Include category here
+      category: this.selectedCategory,
     });
 
     if (!isCorrect) {
@@ -233,7 +250,6 @@ resetQuizState(): void {
       });
     }
 
-    // Check if the answer is correct
     if (isCorrect) {
       this.score++;
       this.correct = true;
@@ -253,7 +269,7 @@ resetQuizState(): void {
         this.quizResult = true;
         this.wrongAnswers = this.userAnswers.filter(answer => !answer.selectedAnswer || !answer.isCorrect);
       }
-    }, 1000);  // 1 second delay to let the user see the color change
+    }, 1000);
   }
 
   getScorePercentage(){

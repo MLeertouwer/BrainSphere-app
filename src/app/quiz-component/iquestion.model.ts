@@ -3,4 +3,5 @@ export interface IQuestion {
   answer: string;
   choices: string[];
   category: string; // Required property
+  level?: string | null;
   }
