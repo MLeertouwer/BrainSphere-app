@@ -77,7 +77,7 @@ export class QuizComponent implements OnInit {
 
   prepareQuestions(): void {
 
-    if (this.selectedCategory && this.selectedLevel) {
+    if (this.selectedCategory) {
       this.questions = this.quizDataService.getQuestionsByCategoryAndLevel(
         this.selectedCategory,
         this.selectedLevel
@@ -102,11 +102,9 @@ export class QuizComponent implements OnInit {
 
   onSelectCategory(category: string): void {
     this.selectedCategory = category;
-    this.selectedCategory = category;
     this.levels = this.quizDataService.getLevelsForCategory(category);
     this.selectedLevel = null;
     this.showOptionMenu = false;
-    this.selectedCategory = category;
 
     this.questions = this.quizDataService.getQuestionsByCategoryAndLevel(category, this.selectedLevel);
     this.randomOrder = false;
@@ -120,6 +118,16 @@ export class QuizComponent implements OnInit {
     this.incorrect = false;
     this.userAnswers = [];
     this.showOptionMenu = false;
+
+    if (this.levels.length === 0) {
+      console.log("N levels available, skipping to option menu")
+      this.selectedLevel = null;
+      this.showOptionMenu = true; // Skip directly to the options menu
+    } else {
+      console.log("Levels available. showing level selection")
+      this.selectedLevel = null;
+      this.showOptionMenu = false;
+    }
 
     if (this.questions.length === 0) {
       this.quizResult = true;
