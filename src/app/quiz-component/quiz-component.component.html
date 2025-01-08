@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div class="category-selection" *ngIf="showOptionMenu && selectedLevel">
+  <div class="category-selection" *ngIf="showOptionMenu && (levels.length === 0 || selectedLevel !== undefined)">
     <button class="back-to-categories" (click)="onSelectBackToMenu()">back</button>
     <h2>Options</h2>
     <h3>Randomize questions</h3>
@@ -60,7 +60,7 @@
   </div>
 
 <!-- Quiz section: Displayed only when a category is selected -->
-  <div class="question-display" *ngIf="currentQuestion && selectedCategory && selectedLevel && !showOptionMenu"
+  <div class="question-display" *ngIf="currentQuestion && selectedCategory && (!levels.length || selectedLevel) && !showOptionMenu"
       [ngClass]="{'correct-answer': correct, 'incorrect-answer': incorrect}" >
     <div class="menu-button">
         <button class="back-to-menu" (click)="onSelectBackToMenu()">Back</button>
