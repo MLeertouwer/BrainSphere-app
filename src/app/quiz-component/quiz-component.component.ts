@@ -176,6 +176,7 @@ export class QuizComponent implements OnInit {
 
 repeatWrongAnswers(): void{
   if (this.wrongAnswers.length === 0) {
+    console.log("no wrong answers to repeat!")
     return;
   }
 
