@@ -1,27 +1,50 @@
-# QuizApp
+# BrainSphere – Quiz App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
+**BrainSphere** is a quiz application I built during my internship at Experlogix. It's designed for taking quizzes on several differrent subjects, and some with different difficulties.
 
-## Development server
+The app is built with **Angular** and styled with some basic **CSS**.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## ✨ Features
+- Question and answer interface
+- Score tracking
+- Basic timer component
+- different levels on subjects
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🔧 Technologies Used
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Angular 18
+- TypeScript
+- HTML/CSS
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 💡 What I Learned
 
-## Running end-to-end tests
+- Component-based development with Angular
+- Building reusable components
+- Debugging and improving performance
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+## 🚀 Running the Project Locally
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+To run the application locally:
+
+1. Clone the repository:
+   ```bash
+   https://github.com/MLeertouwer/BrainSphere-app.git
+   
+2. Install dependencies:
+
+npm install
+
+3. Start the dev server:
+
+ng serve
+
+4. Visit http://localhost:4200 in your browser
+
