@@ -91,7 +91,11 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/BrainSphere-app/",
+            "dir": "dist/quiz-app/browser"
+          }
         }
       }
     }
