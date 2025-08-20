@@ -37,7 +37,7 @@ export class QuizComponent implements OnInit {
   timeChoice: boolean = false;
   timerDuration: number = 10;
 
-  constructor(private quizDataService: QuizDataService) {}
+  constructor(private quizDataService: QuizDataService) { }
 
 
   ngOnInit(): void {
@@ -57,14 +57,14 @@ export class QuizComponent implements OnInit {
     this.quizResult = false;
   }
 
-  startMenu(): void{
+  startMenu(): void {
     this.showStartScreen = true;
   }
 
-  onGoToCategoryMenu(): void{
+  onGoToCategoryMenu(): void {
     this.showStartScreen = false;
     this.showOptionMenu = false;
-   }
+  }
 
   shuffleQuestions(questions: IQuestion[]): IQuestion[] {
     const shuffled = [...questions];
@@ -121,6 +121,10 @@ export class QuizComponent implements OnInit {
     this.userAnswers = [];
     this.showOptionMenu = false;
 
+    if (this.levels.length === 0) {
+      this.showOptionMenu = true;
+    }
+
     if (this.questions.length === 0) {
       this.quizResult = true;
       return;
@@ -155,12 +159,12 @@ export class QuizComponent implements OnInit {
           category: ''
         });
 
-         setTimeout(() => {
+        setTimeout(() => {
           this.incorrect = false;
           this.currentQuestionIndex++;
           if (this.currentQuestionIndex >= this.questions.length) {
             this.quizResult = true;
-          } else{
+          } else {
             this.startTimer();
           }
         }, 900);
@@ -174,55 +178,55 @@ export class QuizComponent implements OnInit {
     this.prepareQuestions();
   }
 
-repeatWrongAnswers(): void{
-  if (this.wrongAnswers.length === 0) {
-    console.log("no wrong answers to repeat!")
-    return;
+  repeatWrongAnswers(): void {
+    if (this.wrongAnswers.length === 0) {
+      console.log("no wrong answers to repeat!")
+      return;
+    }
+
+    this.questions = this.wrongAnswers.map(wrongAnswer => {
+      const originalQuestion = this.quizDataService.getQuestionByText(wrongAnswer.question);
+      if (!originalQuestion) {
+        return null;
+      }
+      return originalQuestion;
+    }).filter(question => question !== null) as IQuestion[];
+
+    this.resetQuizState();
+    this.showOptionMenu = true;
+
+    if (this.randomOrder) {
+      this.questions = this.shuffleQuestions(this.questions);
+    }
+
+    if (this.timeChoice) {
+      this.startTimer();
+    }
   }
 
- this.questions = this.wrongAnswers.map(wrongAnswer => {
-  const originalQuestion = this.quizDataService.getQuestionByText(wrongAnswer.question);
-  if (!originalQuestion) {
-    return null;
+  resetQuizState(): void {
+    this.currentQuestionIndex = 0;
+    this.score = 0;
+    this.quizResult = false;
+    this.correct = false;
+    this.incorrect = false;
+    this.userAnswers = [];
+    this.wrongAnswers = [];
   }
-  return originalQuestion;
-}).filter(question => question !== null) as IQuestion[];
-
-  this.resetQuizState();
-  this.showOptionMenu = true;
-
-  if (this.randomOrder) {
-    this.questions = this.shuffleQuestions(this.questions);
-  }
-
-  if (this.timeChoice) {
-    this.startTimer();
-  }
-}
-
-resetQuizState(): void {
-  this.currentQuestionIndex = 0;
-  this.score = 0;
-  this.quizResult = false;
-  this.correct = false;
-  this.incorrect = false;
-  this.userAnswers = [];
-  this.wrongAnswers = [];
-}
 
   onRandomOrderChange(): void {
-  console.log("Random order toggled. Current value:", this.randomOrder);
-  console.log(this.questions);
- }
+    console.log("Random order toggled. Current value:", this.randomOrder);
+    console.log(this.questions);
+  }
 
- onTimedQuestionsChange(): void {
-  console.log("Timed questions toggled. Current value:", this.timeChoice);
- }
+  onTimedQuestionsChange(): void {
+    console.log("Timed questions toggled. Current value:", this.timeChoice);
+  }
 
- onLevelChange(): void {
-  this.questions = this.quizDataService.getQuestionsByCategoryAndLevel(this.selectedCategory, this.selectedLevel);
-  console.log("Questions after level change:", this.questions);
-}
+  onLevelChange(): void {
+    this.questions = this.quizDataService.getQuestionsByCategoryAndLevel(this.selectedCategory, this.selectedLevel);
+    console.log("Questions after level change:", this.questions);
+  }
 
   onAnswer(selectedAnswer: string): void {
     const currentQuestion = this.currentQuestion;
@@ -233,7 +237,7 @@ resetQuizState(): void {
 
     const isCorrect = selectedAnswer === currentQuestion.answer;
 
-     this.userAnswers.push({
+    this.userAnswers.push({
       question: this.currentQuestion.question,
       selectedAnswer: selectedAnswer,
       correctAnswer: currentQuestion.answer,
@@ -257,7 +261,7 @@ resetQuizState(): void {
     } else {
       this.incorrect = true;
       this.correct = false;
-  }
+    }
 
     setTimeout(() => {
       this.correct = false;
@@ -272,30 +276,30 @@ resetQuizState(): void {
     }, 1000);
   }
 
-  getScorePercentage(){
+  getScorePercentage() {
     const scorePercentage = (this.score / this.questions.length) * 100;
 
-    if(scorePercentage === 100){
+    if (scorePercentage === 100) {
       return 'score-ring-green';
-    } else if( scorePercentage >= 60){
+    } else if (scorePercentage >= 60) {
       return 'score-ring-green';
-    } else if(scorePercentage >= 40){
+    } else if (scorePercentage >= 40) {
       return 'score-ring-orange';
     } else {
       return 'score-ring-red';
     }
   }
 
-  getScoreMessage(){
+  getScoreMessage() {
     const scorePercentage = (this.score / this.questions.length) * 100;
 
-    if(scorePercentage === 100){
+    if (scorePercentage === 100) {
       return "Wow! You really are a pro on this subject!";
-    } else if( scorePercentage >= 60){
+    } else if (scorePercentage >= 60) {
       return "Good Job! Keep up the good work!"
-    } else if( scorePercentage >= 40){
+    } else if (scorePercentage >= 40) {
       return "Keep up the motivation! you're almost there!"
-    } else{
+    } else {
       return "Don't worry, just practice some more!"
     }
   }
