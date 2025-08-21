@@ -7,11 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { answerResults } from './ianswer-results.model';
 
 @Component({
-  selector: 'app-quiz-component',
-  standalone: true,
-  imports: [CommonModule, TopbtnComponent, FormsModule],
-  templateUrl: './quiz-component.component.html',
-  styleUrl: './quiz-component.component.css'
+    selector: 'app-quiz-component',
+    imports: [CommonModule, TopbtnComponent, FormsModule],
+    templateUrl: './quiz-component.component.html',
+    styleUrl: './quiz-component.component.css'
 })
 
 export class QuizComponent implements OnInit {

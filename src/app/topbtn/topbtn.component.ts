@@ -2,11 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit, } from '@angular/core';
 
 @Component({
-  selector: 'app-topbtn',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './topbtn.component.html',
-  styleUrl: './topbtn.component.css'
+    selector: 'app-topbtn',
+    imports: [CommonModule],
+    templateUrl: './topbtn.component.html',
+    styleUrl: './topbtn.component.css'
 })
 export class TopbtnComponent implements OnInit{
    showTopButton = false;
